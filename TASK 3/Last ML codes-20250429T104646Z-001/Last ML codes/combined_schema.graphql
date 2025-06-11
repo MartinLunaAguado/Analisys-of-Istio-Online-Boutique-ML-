@@ -1,0 +1,41 @@
+
+type Node {
+  name: String!
+  pods: [Pod] @hasInverse(field: isDeployedOn)
+}
+
+type Pod {
+  name: String!
+  timestamp: DateTime!
+  microservice: String
+  abnormality: String
+  experiment: Int
+  cpu: Float
+  memory: Float
+  net_rx: Float
+  net_tx: Float
+  isDeployedOn: Node
+}
+
+type Microservice {
+  name: String!
+  outgoing: [Communication] @hasInverse(field: from)
+  incoming: [Communication] @hasInverse(field: to)
+}
+
+type Communication {
+  from: Microservice!
+  to: Microservice!
+  communication: CommunicationMetrics
+}
+
+type CommunicationMetrics {
+  timestamp: String
+  throughput: Float
+  duration_milliseconds: Float
+  request_rate: Float
+  istio_request_bytes: Float
+  average_latency: Float
+  new_request: Float
+  status: Int
+}

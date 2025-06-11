@@ -1,0 +1,18 @@
+
+type Node {
+  name: String!
+  pods: [Pod] @hasInverse(field: isDeployedOn)
+}
+
+type Pod {
+  name: String!
+  timestamp: DateTime!
+  microservice: String
+  abnormality: String
+  experiment: Int
+  cpu: Float
+  memory: Float
+  net_rx: Float
+  net_tx: Float
+  isDeployedOn: Node
+}
