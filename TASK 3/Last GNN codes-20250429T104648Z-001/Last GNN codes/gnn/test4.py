@@ -126,7 +126,7 @@ def train():
 
 
     # Prepare features and target
-    features = ['throughput', 'duration_milliseconds', 'request_rate','istio_request_bytes','average_latency','istio_request_bytes','new_request','timestamp']  # Excluding error_rate
+    features = ['throughput',  'new_request','istio_request_bytes','average_latency','istio_request_bytes','request_rate']  # Excluding error_rate
     target = 'status'
     scaler = MinMaxScaler()
     df[features] = scaler.fit_transform(df[features])
